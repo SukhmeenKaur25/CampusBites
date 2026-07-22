@@ -23,6 +23,8 @@ class CartServices {
 
     async All(payload, key) {
         try {
+            console.log("payload", payload);
+            console.log("key", key);
             let CateDocs = null
 
             if(!!payload){
@@ -104,6 +106,31 @@ async statusChange(id,status){
     catch(err){
         console.log(err);
         return 0
+    }
+}
+
+async CartByUser(uid){
+    try{
+
+        let cartDocs = await getDocs(
+            query(
+                collection(db,dbPath),
+                where("userId","==",uid)
+            )
+        )
+
+        let cartData = cartDocs.docs.map((el)=>{
+            return{
+                id:el.id,
+                ...el.data()
+            }
+        })
+
+        return cartData
+
+    }
+    catch(err){
+        console.log(err);
     }
 }
 

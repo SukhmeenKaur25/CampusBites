@@ -5,11 +5,23 @@ import { useParams } from "react-router-dom"
 import AuthServices from "../../services/AuthServices"
 import CartServices from "../../services/CartServices"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 function ViewMenu() {
   const [Data, setData] = useState([])
 
   const { id } = useParams();
+
+  let nav = useNavigate();
+
+ let islogin = AuthServices.getIslogin()
+
+   useEffect(()=>{
+        if(!islogin){
+            toast.warning("Please Login first")
+            nav("/login")
+        }
+    })
 
   useEffect(() => {
     FetchData()

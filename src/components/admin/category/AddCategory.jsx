@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FadeLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import CategoryServices from '../../../services/CategoryServices'
 import CloudinaryServices from '../../../services/CloudinaryServices'
@@ -9,9 +11,16 @@ const AddCategory = () => {
   const [image, setimage] = useState(null);
   const [description, setdescription] = useState("")
 
+  const [load, setload] = useState(false)
+  const nav = useNavigate()
+
   const HandleForm = async (e) => {
     e.preventDefault()
 
+    setload(true)
+
+    
+    try{
     let url = await CloudinaryServices.UploadImage(image)
 
     let data = {
@@ -24,12 +33,35 @@ const AddCategory = () => {
 
     if (result == 1) {
       toast.success("Category Added Successfully")
+      nav("/admin/manageCategory")
     }
     else {
       toast.error("Failed to Add Category")
     }
   }
+  catch (err) {
+        toast.error(err)
+      }
+
+  finally {
+      setload(false)
+    }
+  }
   return (
+    <>
+      {
+        load ?
+          <div style={{
+            height: "100vh",
+            display: "flex",
+
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            <FadeLoader height={25} width={5} color="#ec0606" />
+          </div>
+
+          :
     <>
       <section className="contact-section">
         <div className="container">
@@ -112,6 +144,8 @@ const AddCategory = () => {
           </div>
         </div>
       </section>
+      </>
+}
     </>
   )
 }

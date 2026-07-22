@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import React, { useState , useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { FadeLoader } from 'react-spinners'
 import CategoryServices from '../../../services/CategoryServices'
 import CloudinaryServices from '../../../services/CloudinaryServices'
 import MenuServices from '../../../services/MenuServices'
@@ -11,6 +13,9 @@ const AddMenu = () => {
     const [price, setPrice] = useState("");
     const [CateId, setCateId] = useState("");
     const [image, setImage] = useState(null);
+
+    const [load, setload] = useState(false)
+  const nav = useNavigate()
 
     const [Data, setData] = useState([])
 
@@ -26,6 +31,8 @@ const AddMenu = () => {
 
     const HandleForm = async (e) => {
         e.preventDefault()
+
+        setload(true)
 
         try {
             let imageUrl = "";
@@ -44,28 +51,41 @@ const AddMenu = () => {
                 image: imageUrl,
             };
 
-            console.log(data);
-
-            console.log(data);
-
             const result = await MenuServices.Add(data);
 
             if (result === 1) {
-                toast.success("Product Added Successfully");
+                toast.success("Menu Item Added Successfully");
 
                 setName("");
                 setDescription("");
                 setPrice("");
                 setImage(null);
             } else {
-                toast.error("Failed to Add Product");
+                toast.error("Failed to Add Menu Item");
             }
         } catch (err) {
             console.log(err);
             toast.error("Something went wrong");
         }
-    };
+        finally {
+      setload(false)
+    }
+    }
     return (
+         <>
+              {
+                load ?
+                  <div style={{
+                    height: "100vh",
+                    display: "flex",
+        
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}>
+                    <FadeLoader height={25} width={5} color="#ec0606" />
+                  </div>
+        
+                  :
         <>
             <section className="contact-section">
                 <div className="container">
@@ -187,6 +207,8 @@ const AddMenu = () => {
                 </div>
             </section>
         </>
+}
+</>
     )
 }
 

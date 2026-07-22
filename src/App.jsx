@@ -20,9 +20,9 @@ import Register from "./components/user/Register";
 import AddMenu from "./components/admin/menu/AddMenu";
 import ManageMenu from "./components/admin/menu/ManageMenu";
 import ViewCategory from "./components/user/ViewCategory";
-import Menu from "./components/user/Menu";
 import UpdateMenu from "./components/admin/menu/UpdateMenu";
 import ViewMenu from "./components/user/ViewMenu";
+import AddToCart from "./components/user/AddtoCart";
 
 
 
@@ -42,6 +42,8 @@ export default function App(){
                         <Route path="/viewCategory" element={<ViewCategory/>}></Route>
                         
                         <Route path="/viewMenu/:id" element={<ViewMenu/>}></Route>
+
+                        <Route path="/addToCart" element={<AddToCart/>}></Route>
                     </Route>
 
                     <Route path="/admin" element={<AdminLayout />}>

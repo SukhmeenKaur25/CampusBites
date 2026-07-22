@@ -5,6 +5,7 @@ import MenuServices from '../../../services/MenuServices'
 import CloudinaryServices from '../../../services/CloudinaryServices'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { FadeLoader } from 'react-spinners'
 import CategoryServices from '../../../services/CategoryServices'
 
 
@@ -17,6 +18,8 @@ const UpdateMenu = () => {
     const [ImageURL, setImageURL] = useState("")
 
     const [Data, setData] = useState([])
+
+    const [load, setload] = useState(false)
 
     const nav = useNavigate()
 
@@ -44,6 +47,10 @@ const UpdateMenu = () => {
     const HandleForm = async (e) => {
         e.preventDefault()
 
+        setload(true)
+
+        try{
+
         let url = ImageURL
         if (!!image) {
             url = await CloudinaryServices.UploadImage(image)
@@ -69,7 +76,29 @@ const UpdateMenu = () => {
             toast.error("Failed to Update Menu Item")
         }
     }
+    catch (err) {
+                console.log(err);
+                toast.error("Something went wrong");
+            }
+            finally {
+          setload(false)
+        }
+    }
     return (
+         <>
+                      {
+                        load ?
+                          <div style={{
+                            height: "100vh",
+                            display: "flex",
+                
+                            justifyContent: "center",
+                            alignItems: "center"
+                          }}>
+                            <FadeLoader height={25} width={5} color="#ec0606" />
+                          </div>
+                
+                          :
         <>
             <section className="contact-section">
                 <div className="container">
@@ -193,6 +222,8 @@ const UpdateMenu = () => {
                 </div>
             </section>
         </>
+}
+</>
     )
 }
 

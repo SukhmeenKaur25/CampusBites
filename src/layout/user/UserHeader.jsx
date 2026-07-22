@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import AuthServices from "../../services/AuthServices"
 import Swal from "sweetalert2"
 import { toast } from "react-toastify"
+import { FaCartPlus } from "react-icons/fa";
 
 function UserHeader() {
   let isLogin = AuthServices.getIslogin()
@@ -181,10 +182,10 @@ function UserHeader() {
               }
             </ul>
             <div className="d-flex align-items-center gap-1">
-              {/* FIX 1: Search button */}
-              <button id="navSearchBtn" title="Search">
-                <i className="fas fa-search" />
-              </button>
+                <Link to="/addToCart" className="nav-link nav-cta">
+                <FaCartPlus size={22} />
+                Cart
+              </Link>
               <Link to="#menu" className="nav-link nav-cta">
                 <i className="fas fa-shopping-bag me-1" />
                 Order Now

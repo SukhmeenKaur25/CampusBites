@@ -5,6 +5,7 @@ import CategoryServices from '../../../services/CategoryServices'
 import CloudinaryServices from '../../../services/CloudinaryServices'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { FadeLoader } from 'react-spinners'
 
 const UpdateCategory = () => {
   const [name, setname] = useState("")
@@ -12,6 +13,7 @@ const UpdateCategory = () => {
   const [description, setdescription] = useState("")
   const [ImageURL , setImageURL] = useState("")
 
+  const [load, setload] = useState(false)
   const nav = useNavigate()
 
   const {id}=useParams()
@@ -29,6 +31,11 @@ const UpdateCategory = () => {
 
   const HandleForm = async (e) => {
     e.preventDefault()
+
+    setload(true)
+
+    
+    try{
 
     let url=ImageURL
     if(!!image){
@@ -51,7 +58,29 @@ const UpdateCategory = () => {
       toast.error("Failed to Update Category")
     }
   }
+  catch (err) {
+          toast.error(err)
+        }
+  
+    finally {
+        setload(false)
+      }
+  }
   return (
+    <>
+          {
+            load ?
+              <div style={{
+                height: "100vh",
+                display: "flex",
+    
+                justifyContent: "center",
+                alignItems: "center"
+              }}>
+                <FadeLoader height={25} width={5} color="#ec0606" />
+              </div>
+    
+              :
     <>
       <section className="contact-section">
         <div className="container">
@@ -137,6 +166,8 @@ const UpdateCategory = () => {
         </div>
       </section>
     </>
+}
+</>
   )
 }
 
