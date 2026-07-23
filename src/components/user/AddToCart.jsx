@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
-import MenuServices from '../../services/MenuServices';
+import MenuServices from '../../services/MenuServices'
 import AuthServices from '../../services/AuthServices'
-import CartServices from '../../services/CartServices';
-import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
-
-
+import CartServices from '../../services/CartServices'
+import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 const AddToCart = () => {
 
@@ -17,44 +15,39 @@ const AddToCart = () => {
     FetchCart()
   }, [])
 
-  const uid = AuthServices.getUid();
-
+  const uid = AuthServices.getUid()
 
   const FetchCart = async () => {
 
     let data = await CartServices.CartByUser(uid)
-
     setCartData(data)
 
     let menu = await MenuServices.All()
-
     setMenuData(menu)
+
   }
 
   const GetProduct = (id) => {
-
-    return menuData.find((el) => el.id == id);
-
+    return menuData.find((el) => el.id == id)
   }
 
   const GrandTotal = () => {
 
-  let total = 0
+    let total = 0
 
-  cartData.forEach((item) => {
+    cartData.forEach((item) => {
 
-    let product = GetProduct(item.proId)
+      let product = GetProduct(item.proId)
 
-    if (product) {
-      total += product.price * item.quantity
-    }
+      if (product) {
+        total += product.price * item.quantity
+      }
 
-  })
+    })
 
-  return total
+    return total
 
-}
-
+  }
 
   const IncreaseQuantity = async (item) => {
 
@@ -68,9 +61,9 @@ const AddToCart = () => {
       FetchCart()
       toast.success("Quantity Updated")
     }
- else {
-        toast.error("Something Went Wrong")
-      }
+    else {
+      toast.error("Something Went Wrong")
+    }
 
   }
 
@@ -98,8 +91,7 @@ const AddToCart = () => {
 
   const RemoveItem = async (id) => {
 
-    
-Swal.fire({
+    Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -109,68 +101,98 @@ Swal.fire({
       confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
 
-      if(result.isConfirmed){
-let res = await CartServices.delete(id)
+      if (result.isConfirmed) {
 
-    if (res == 1) {
-      toast.success("Item Removed")
-      FetchCart()
-    }
-    else {
-toast.error("Something Went Wrong")
+        let res = await CartServices.delete(id)
 
-    }
-  }
+        if (res == 1) {
+          toast.success("Item Removed")
+          FetchCart()
+        }
+        else {
+          toast.error("Something Went Wrong")
+        }
+
+      }
+
     })
 
-    
-    
   }
 
+  const handlePay = (amt) => {
 
+  var options = {
+    key: "rzp_test_TGVsewt7NtQJNB", 
+    amount: amt * 100,
+    currency: "INR",
+    name: "Campus Bites",
+    description: "Food Order",
 
+    handler: function (response) {
+      toast.success("Payment Successful");
+      console.log(response);
+    },
+
+    prefill: {
+      name: "Sukhmeen Kaur",
+      email: "example@gmail.com",
+      contact: "9876543210"
+    },
+
+    theme: {
+      color: "#198754"
+    }
+  };
+
+  const rzp = new Razorpay(options);
+
+  rzp.on("payment.failed", function () {
+    toast.error("Payment Failed");
+  });
+
+  rzp.open();
+};
 
   return (
     <>
       <section className="contact-section">
         <div className="container">
+
           <div className="row g-4 justify-content-center">
 
             <div className="d-flex justify-content-between align-items-center mb-3">
-
               <h1 className="flex-grow-1 text-center m-0">
                 Shopping Cart
               </h1>
-
             </div>
 
             <div className="col-lg-10" data-aos="fade-left">
+
               {
                 cartData.length > 0 ?
 
-                  <div className="fcard">
+                  <div className="bg-white rounded shadow p-4">
+
                     <table className="table">
+
                       <thead>
                         <tr>
-                          <th scope="col">PRODUCT DETAILS</th>
-                          <th scope="col">QUANTITY</th>
-                          <th scope="col">PRICE</th>
-                          <th scope="col">TOTAL</th>
-                          <th scope="col">Action</th>
-
+                          <th>PRODUCT DETAILS</th>
+                          <th>QUANTITY</th>
+                          <th>PRICE</th>
+                          <th>TOTAL</th>
+                          <th>ACTION</th>
                         </tr>
                       </thead>
+
                       <tbody>
 
                         {
                           cartData.map((item) => {
 
-                            const product = GetProduct(item.proId);
+                            const product = GetProduct(item.proId)
 
-
-                            if (!product) {
-                              return null;
-                            }
+                            if (!product) return null
 
                             return (
 
@@ -178,6 +200,7 @@ toast.error("Something Went Wrong")
 
                                 <td>
                                   <div className="d-flex align-items-center gap-3">
+
                                     <img
                                       src={product.image}
                                       width={80}
@@ -189,15 +212,15 @@ toast.error("Something Went Wrong")
                                     <div>
                                       <h6 className="mb-0">{product.name}</h6>
                                     </div>
+
                                   </div>
                                 </td>
 
                                 <td>
+
                                   <button
                                     className="btn btn-danger btn-sm"
-                                    onClick={() => {
-                                      DecreaseQuantity(item)
-                                    }}
+                                    onClick={() => DecreaseQuantity(item)}
                                   >
                                     -
                                   </button>
@@ -208,13 +231,11 @@ toast.error("Something Went Wrong")
 
                                   <button
                                     className="btn btn-success btn-sm"
-                                    onClick={() => {
-                                      IncreaseQuantity(item)
-                                    }}
-                                    
+                                    onClick={() => IncreaseQuantity(item)}
                                   >
                                     +
                                   </button>
+
                                 </td>
 
                                 <td>
@@ -224,13 +245,12 @@ toast.error("Something Went Wrong")
                                 <td>
                                   ₹ {product.price * item.quantity}
                                 </td>
+
                                 <td>
 
                                   <button
                                     className="btn btn-danger"
-                                    onClick={() => {
-                                      RemoveItem(item.id)
-                                    }}
+                                    onClick={() => RemoveItem(item.id)}
                                   >
                                     Remove
                                   </button>
@@ -245,20 +265,30 @@ toast.error("Something Went Wrong")
                         }
 
                       </tbody>
-                      
-                     
+
                     </table>
+
+                    <hr />
+
                     <div className="d-flex justify-content-between align-items-center mt-4">
 
-    <Link to="/menu" className="btn btn-outline-danger">
-        ← Continue Shopping
-    </Link>
+  <Link to="/menu" className="btn btn-outline-danger">
+    ← Continue Shopping
+  </Link>
 
-    <h4 className="mb-0 fw-bold">
-        Grand Total : ₹ {GrandTotal()}
-    </h4>
+  <button
+  className="btn btn-success btn-lg"
+  onClick={() => handlePay(GrandTotal())}
+>
+  Pay Now
+</button>
+
+  <h4 className="fw-bold text-dark mb-0">
+    Grand Total : ₹ {GrandTotal()}
+  </h4>
 
 </div>
+
                   </div>
 
                   :
@@ -267,20 +297,18 @@ toast.error("Something Went Wrong")
 
                     <h3>Your Cart is Empty</h3>
 
-                    <Link className="btn btn-danger" to="/viewMenu">
-
+                    <Link
+                      className="btn btn-danger"
+                      to="/viewMenu"
+                    >
                       Start Shopping
-
                     </Link>
 
                   </div>
 
               }
 
-
             </div>
-
-
 
           </div>
 
@@ -290,4 +318,4 @@ toast.error("Something Went Wrong")
   )
 }
 
-export default AddToCart;
+export default AddToCart

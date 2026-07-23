@@ -901,7 +901,7 @@ function Home(){
       <button className="gpclose" id="gpClose">
         <i className="fas fa-times" />
       </button>
-      <img id="gpImg" src="" alt="" />
+      {/* <img id="gpImg" src="" alt="" /> */}
       <div className="gpcap">
         <h5 id="gpTitle" />
         <p id="gpDesc" />

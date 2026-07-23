@@ -184,7 +184,6 @@ function UserHeader() {
             <div className="d-flex align-items-center gap-1">
                 <Link to="/addToCart" className="nav-link nav-cta">
                 <FaCartPlus size={22} />
-                Cart
               </Link>
               <Link to="#menu" className="nav-link nav-cta">
                 <i className="fas fa-shopping-bag me-1" />
