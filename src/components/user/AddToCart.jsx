@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import MenuServices from '../../services/MenuServices'
@@ -5,6 +6,7 @@ import AuthServices from '../../services/AuthServices'
 import CartServices from '../../services/CartServices'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
+import OrderServices from '../../services/OrderServices'
 
 const AddToCart = () => {
 
@@ -119,6 +121,10 @@ const AddToCart = () => {
 
   }
 
+  const GenerateToken = () => {
+  return Math.floor(1000 + Math.random() * 9000)
+}
+
   const handlePay = (amt) => {
 
   var options = {
@@ -128,10 +134,47 @@ const AddToCart = () => {
     name: "Campus Bites",
     description: "Food Order",
 
-    handler: function (response) {
-      toast.success("Payment Successful");
-      console.log(response);
-    },
+    handler: async function (response) {
+
+  const token = GenerateToken();
+
+  const orderData = {
+  userId: uid,
+  userName: AuthServices.getName(),
+  email: AuthServices.getEmail(),
+  token: token,
+  amount: GrandTotal(),
+  paymentId: response.razorpay_payment_id,
+  status: "Pending",
+  createdAt: new Date(),
+  
+
+  items: cartData
+}
+
+  let res = await OrderServices.Add(orderData);
+
+  if (res == 1) {
+    toast.success("Order Placed Successfully");
+    console.log(orderData);
+    for (let item of cartData) {
+    await CartServices.delete(item.id);
+  }
+
+  FetchCart();
+  Swal.fire({
+  icon: "success",
+  title: "Order Confirmed",
+  html: `
+    <h4>Your Token Number</h4>
+    <h1 style="color:green">${token}</h1>
+  `
+});
+  } else {
+    toast.error("Order Failed");
+  }
+
+},
 
     prefill: {
       name: "Sukhmeen Kaur",
@@ -283,7 +326,7 @@ const AddToCart = () => {
   Pay Now
 </button>
 
-  <h4 className="fw-bold text-dark mb-0">
+  <h4 className=" text-dark mb-0">
     Grand Total : ₹ {GrandTotal()}
   </h4>
 
@@ -299,7 +342,7 @@ const AddToCart = () => {
 
                     <Link
                       className="btn btn-danger"
-                      to="/viewMenu"
+                      to="/menu"
                     >
                       Start Shopping
                     </Link>

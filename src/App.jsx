@@ -23,7 +23,8 @@ import ViewCategory from "./components/user/ViewCategory";
 import UpdateMenu from "./components/admin/menu/UpdateMenu";
 import ViewMenu from "./components/user/ViewMenu";
 import AddToCart from "./components/user/AddtoCart";
-
+import Orders from "./components/user/Orders";
+import AllOrders from "./components/admin/orders/AllOrders";
 
 
 export default function App(){
@@ -40,6 +41,7 @@ export default function App(){
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register/>}></Route>
                         <Route path="/viewCategory" element={<ViewCategory/>}></Route>
+                        <Route path="/orders" element={<Orders/>}></Route>
                         
                         <Route path="/viewMenu/:id" element={<ViewMenu/>}></Route>
 
@@ -54,6 +56,7 @@ export default function App(){
                         <Route path="addMenu" element={<AddMenu />}></Route>
                         <Route path="manageMenu" element={<ManageMenu />}></Route>
                         <Route path="updateMenu/:id" element={<UpdateMenu />}></Route>
+                        <Route path="allOrders" element={<AllOrders />}></Route>
 
                         
                     </Route>

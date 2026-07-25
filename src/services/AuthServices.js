@@ -20,6 +20,14 @@ class AuthServices{
        return localStorage.getItem("isLogin")
     }
 
+    getName() {
+    return localStorage.getItem("name")
+}
+
+getEmail() {
+    return localStorage.getItem("email")
+}
+
     clear(){
         localStorage.clear()
     }

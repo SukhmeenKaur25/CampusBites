@@ -185,9 +185,9 @@ function UserHeader() {
                 <Link to="/addToCart" className="nav-link nav-cta">
                 <FaCartPlus size={22} />
               </Link>
-              <Link to="#menu" className="nav-link nav-cta">
+              <Link to="/orders" className="nav-link nav-cta">
                 <i className="fas fa-shopping-bag me-1" />
-                Order Now
+                My orders
               </Link>
             </div>
           </div>

@@ -27,7 +27,7 @@ const Pay = () => {
             },
 
             "prefill": { 
-                "name": "Gaurav Kumar", 
+                "name": "Sukhmeen kaur", 
                 "email": "gaurav.kumar@example.com",
                 "contact": "+919876543210"
             },
