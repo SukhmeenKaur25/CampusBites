@@ -1,6 +1,6 @@
 import About from "./About"
 import Contact from "./Contact";
-import OpeningHours from "./Openinghours";
+import OpeningHours from "./OpeningHours";
 import ViewCategory from "./ViewCategory";
 function Home(){
     return(
