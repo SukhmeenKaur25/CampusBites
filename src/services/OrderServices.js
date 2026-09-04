@@ -41,6 +41,33 @@ class OrderServices {
 
   }
 
+  async GetByToken(token) {
+  try {
+
+    let q = query(
+      collection(db, dbPath),
+      where("token", "==", Number(token))
+    );
+
+    let snap = await getDocs(q);
+
+    let data = [];
+
+    snap.forEach((doc) => {
+      data.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+
+    return data;
+
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+}
+
   async OrderByUser(uid) {
 
     try {

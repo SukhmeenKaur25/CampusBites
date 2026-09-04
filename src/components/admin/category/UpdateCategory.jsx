@@ -113,7 +113,7 @@ const UpdateCategory = () => {
                         onChange={(e) => {
                           setname(e.target.value)
                         }}
-                        id="name"
+                        id="catName"
                         required
                         type="text"
                         placeholder="Enter your name" />
@@ -126,7 +126,7 @@ const UpdateCategory = () => {
                         onChange={(e) => {
                           setimage(e.target.files[0])
                         }}
-                        id="name"
+                        id="catImage"
                         type="file"
                         placeholder="Enter your name" />
                     </div>

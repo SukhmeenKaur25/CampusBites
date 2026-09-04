@@ -42,6 +42,11 @@ const AddMenu = () => {
             }
 
             let category = Data.find((el) => el.id == CateId);
+            if(!category){
+                toast.error("Please select a category");
+                setload(false);
+                return;
+            }
             const data = {
                 name,
                 description,
@@ -118,7 +123,7 @@ const AddMenu = () => {
                                                 onChange={(e) => {
                                                     setName(e.target.value)
                                                 }}
-                                                id="name"
+                                                id="menuName"
                                                 required
                                                 type="text"
                                                 placeholder="Enter Item Name" />
@@ -132,6 +137,7 @@ const AddMenu = () => {
                                                 value={CateId}
                                                 onChange={(e) => setCateId(e.target.value)}
                                                 className="form-control" name="" id="">
+                                                required
 
                                                 <option value="">Category</option>
                                                 {
@@ -168,7 +174,7 @@ const AddMenu = () => {
                                                 onChange={(e) => {
                                                     setImage(e.target.files[0])
                                                 }}
-                                                id="name"
+                                                id="menuImage"
                                                 // required
                                                 type="file" />
                                         </div>

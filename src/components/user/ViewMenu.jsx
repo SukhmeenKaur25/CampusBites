@@ -95,8 +95,10 @@ function ViewMenu() {
             </Link>
           </div>
           <div className="text-center mb-5" data-aos="fade-up">
-            <span className="slbl">What We Offer</span>
-            <h2 className="stitle">
+            <span className="slbl">What's Cooking</span>
+        <h2 className="stitle">
+          Our Delicious <span>Menu</span>
+
               {!!id > 0 ? Data[0]?.categoryName : "Menu"}
             </h2>
             <div className="sline" />

@@ -31,9 +31,9 @@ function Contact(){
               <div className="ctinfo">
                 <strong>Address</strong>
                 <span>
-                  42 Flavor Street, Manhattan,
+                  DAV Institute of Engineering & Technology, 
                   <br />
-                  New York, NY 10001
+                  Jalandhar, Punjab
                 </span>
               </div>
             </div>
@@ -43,7 +43,7 @@ function Contact(){
               </div>
               <div className="ctinfo">
                 <strong>Phone</strong>
-                <span>+1 (800) 123-4567</span>
+                <span>+91 9876543210</span>
               </div>
             </div>
             <div className="ctitem">
@@ -52,7 +52,7 @@ function Contact(){
               </div>
               <div className="ctinfo">
                 <strong>Email</strong>
-                <span>hello@sarabfood.com</span>
+                <span>campusbites@gmail.com</span>
               </div>
             </div>
             <div className="ctitem">
@@ -61,7 +61,7 @@ function Contact(){
               </div>
               <div className="ctinfo">
                 <strong>Working Hours</strong>
-                <span>Wed - Sun: 9 AM - 11 PM</span>
+                <span>Mon - Fri: 9 AM - 3 PM</span>
               </div>
             </div>
             <div className="ctsocrow">
@@ -100,17 +100,17 @@ function Contact(){
                 <input
                   type="tel"
                   className="fctrl"
-                  placeholder="+1 (800) 000-0000"
+                  placeholder="+91 98765 43210"
                 />
               </div>
               <div className="col-sm-6">
                 <label className="flbl">Subject *</label>
                 <select className="fctrl">
                   <option>General Inquiry</option>
-                  <option>Catering &amp; Events</option>
+                  <option>Order Issue</option>
                   <option>Feedback</option>
-                  <option>Partnership</option>
-                  <option>Media &amp; Press</option>
+                  <option>Menu Suggestion</option>
+                  <option>Bulk/Group Order</option>
                 </select>
               </div>
               <div className="col-12">

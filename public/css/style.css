@@ -2440,3 +2440,11 @@ footer {
     font-size: 1.8rem;
   }
 }
+.card{
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    cursor:pointer;
+}

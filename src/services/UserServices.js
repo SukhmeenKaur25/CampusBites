@@ -13,6 +13,10 @@ class UserServices {
             const uid = userCreed.user.uid
             
             let userDocs = await getDoc(doc(db, dbPath, uid))
+
+            if (!userDocs.exists()) {
+    return 0;
+}
             const userData = userDocs.data()
 
             AuthServices.setData(userData,uid)
@@ -29,6 +33,9 @@ class UserServices {
         }
         catch (err){
             console.log(err);
+            console.log(err.code);
+    console.log(err.message);
+            return 0;
         }
     }
 

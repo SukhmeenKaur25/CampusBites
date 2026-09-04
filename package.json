@@ -13,6 +13,7 @@
     "axios": "^1.18.1",
     "firebase": "^12.15.0",
     "react": "^19.2.7",
+    "react-chatbotify": "^2.5.0",
     "react-dom": "^19.2.7",
     "react-icons": "^5.7.0",
     "react-loader-spinner": "^8.0.2",

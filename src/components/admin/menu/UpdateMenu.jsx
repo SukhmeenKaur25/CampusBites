@@ -57,6 +57,7 @@ const UpdateMenu = () => {
         }
 
         let category = Data.find((el) => el.id == CateId);
+        required;
         let data = {
             name: name,
             description: description,
@@ -139,7 +140,7 @@ const UpdateMenu = () => {
 
                                         {/* Menu Dropdown */}
                                         <div className="col-sm-12">
-                                            <label className="flbl">Image</label>
+                                            <label className="flbl">Category</label>
 
                                             <select
                                                 value={CateId}
@@ -181,7 +182,7 @@ const UpdateMenu = () => {
                                                 onChange={(e) => {
                                                     setImage(e.target.files[0])
                                                 }}
-                                                id="name"
+                                                id="image"
                                                 type="file" />
                                         </div>
 

@@ -10,20 +10,27 @@ import MenuServices from '../../../services/MenuServices'
 const AllOrders = () => {
     const [orderData, setOrderData] = useState([]);
     const [menuData, setMenuData] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         FetchOrders();
     }, []);
 
-    const FetchOrders = async () => {
+const FetchOrders = async () => {
+  try {
+    let data = await OrderServices.All();
+    setOrderData(data);
 
-        let data = await OrderServices.All();
-        setOrderData(data);
+    let menu = await MenuServices.All();
+    setMenuData(menu);
+  } catch (err) {
+    console.error("Failed to fetch orders:", err);
+    toast.error("Could not load orders");
+  }
+}
 
-        let menu = await MenuServices.All();
-        setMenuData(menu);
 
-    }
+
 
     const GetProduct = (id) => {
         return menuData.find((el) => el.id == id);
@@ -31,17 +38,17 @@ const AllOrders = () => {
 
     const ChangeStatus = async (id, status) => {
 
-  let res = await OrderServices.StatusChange(id, status);
+        let res = await OrderServices.StatusChange(id, status);
 
-  if (res == 1) {
-    toast.success("Status Updated");
-    FetchOrders();
-  }
-  else {
-    toast.error("Something Went Wrong");
-  }
+        if (res == 1) {
+            toast.success("Status Updated");
+            FetchOrders();
+        }
+        else {
+            toast.error("Something Went Wrong");
+        }
 
-}
+    }
 
 
     return (
@@ -60,80 +67,114 @@ const AllOrders = () => {
 
                     :
                     <> */}
-                        <section className="contact-section">
-                            <div className="container">
-                                <div className="row g-4 justify-content-center">
-                                    <div className="d-flex justify-content-between align-items-center mb-3">
+            <section className="contact-section">
+                <div className="container">
+                    <div className="row g-4 justify-content-center">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
 
-                                        <h1 className="flex-grow-1 text-center m-0">
-                                            All Orders
-                                        </h1>
+                            <h1 className="flex-grow-1 text-center m-0">
+                                All Orders
+                            </h1>
 
-                                        <Link
-                                            className="btn btn-danger"
-                                            to="/admin"
-                                        >
-                                            Dashboard
-                                        </Link>
+                            <div className="row mb-3">
+                                <div className="col-md-4 ms-auto">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search by Token or Customer"
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                                    </div>
-                                    <div className="col-lg-10" data-aos="fade-left">
-                                        <div className="fcard">
+                            <Link
+                                className="btn btn-danger"
+                                to="/admin"
+                            >
+                                Dashboard
+                            </Link>
 
-                                            <table className="table">
+                        </div>
+                        <div className="col-lg-10" data-aos="fade-left">
+                            <div className="fcard">
 
-                                                <thead>
+                                <table className="table">
 
-                                                    <tr>
-                                                       
-                                                        <th>Token</th>
-                                                        <th>Customer</th>
-                                                        <th>Email</th>
-                                                        <th>Amount</th>
-                                                        <th>Status</th>
-                                                        <th>Date</th>
-                                                        <th>Items</th>
-                                                    </tr>
+                                    <thead>
 
-                                                </thead>
+                                        <tr>
 
-                                                <tbody>
+                                            <th>Token</th>
+                                            <th>Customer</th>
+                                            <th>Email</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Items</th>
+                                        </tr>
 
-                                                    {
-                                                        orderData.map((item) => {
+                                    </thead>
 
-                                                            return (
+                                    <tbody>
 
-                                                                <tr key={item.id}>
+                                        {
+                                            orderData.filter((item) => {
+  return (
+    (item.token?.toString() || "").includes(search) ||
+    (item.userName?.toLowerCase() || "").includes(search.toLowerCase())
+  );
+})
+                                                .map((item) => {
 
-                                                                    <td>{item.token}</td>
+                                                    return (
 
-                                                                    <td>{item.userName}</td>
+                                                        <tr key={item.id}>
 
-                                                                    <td>{item.email}</td>
+                                                            <td>{item.token}</td>
 
-                                                                    <td>₹ {item.amount}</td>
+                                                            <td>{item.userName}</td>
 
-                                                                    <td>
-  <select
-    className="form-select"
-    value={item.status}
-    onChange={(e) => {
-      ChangeStatus(item.id, e.target.value);
-    }}
-  >
-    <option value="Pending">Pending</option>
-    <option value="Preparing">Preparing</option>
-    <option value="Ready">Ready</option>
-    <option value="Completed">Completed</option>
-  </select>
-</td>
+                                                            <td>{item.email}</td>
 
-                                                                    <td>
-                                                                        {item.createdAt?.toDate().toLocaleDateString()}
-                                                                    </td>
+                                                            <td>₹ {item.amount}</td>
 
-                                                                    <td>
+                                                            <td>
+                                                                <select
+                                                                    className="form-select"
+                                                                    value={item.status}
+                                                                    onChange={(e) => {
+                                                                        ChangeStatus(item.id, e.target.value);
+                                                                    }}
+                                                                >
+                                                                    <option value="Pending">Pending</option>
+                                                                    <option value="Preparing">Preparing</option>
+                                                                    <option value="Ready">Ready</option>
+                                                                    <option value="Completed">Completed</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td>
+                                                                {item.createdAt?.toDate()?.toLocaleDateString() || "—"}
+                                                            </td>
+
+                                                            <td>
+
+                                                                <button
+                                                                    className="btn btn-danger btn-sm"
+                                                                    type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target={`#items${item.id}`}
+                                                                >
+                                                                    <i className="fa fa-info-circle"></i>
+                                                                </button>
+
+                                                                <div
+                                                                    className="collapse mt-2"
+                                                                    id={`items${item.id}`}
+                                                                >
+
+                                                                    <div className="accordion" id={`acc${item.id}`}>
 
                                                                         {
                                                                             item.items?.map((pro, index) => {
@@ -142,19 +183,67 @@ const AllOrders = () => {
 
                                                                                 return (
 
-                                                                                    <div key={index}>
+                                                                                    <div
+                                                                                        className="accordion-item"
+                                                                                        key={index}
+                                                                                    >
 
-                                                                                        <b>{product?.name}</b>
+                                                                                        <h2 className="accordion-header">
 
-<span className="text-muted">
- (Qty : {pro.quantity})
-</span>
+                                                                                            <button
+                                                                                                className="accordion-button collapsed"
+                                                                                                type="button"
+                                                                                                data-bs-toggle="collapse"
+                                                                                                data-bs-target={`#collapse${item.id}${index}`}
+                                                                                            >
+                                                                                                {product?.name}
+                                                                                            </button>
 
-<br />
+                                                                                        </h2>
 
-₹ {product?.price * pro.quantity}
+                                                                                        <div
+                                                                                            id={`collapse${item.id}${index}`}
+                                                                                            className="accordion-collapse collapse"
+                                                                                            data-bs-parent={`#acc${item.id}`}
+                                                                                        >
 
-<hr />
+                                                                                            <div className="accordion-body">
+
+                                                                                                <div className="d-flex align-items-center gap-3">
+
+                                                                                                    <img
+                                                                                                        src={product?.image}
+                                                                                                        alt={product?.name}
+                                                                                                        width="70"
+                                                                                                        height="70"
+                                                                                                        className="rounded"
+                                                                                                    />
+
+                                                                                                    <div>
+
+                                                                                                        <h6 className="mb-1">
+                                                                                                            {product?.name}
+                                                                                                        </h6>
+
+                                                                                                        <p className="mb-1">
+                                                                                                            <b>Quantity :</b> {pro.quantity}
+                                                                                                        </p>
+
+                                                                                                        <p className="mb-1">
+                                                                                                            <b>Price :</b> ₹ {product?.price}
+                                                                                                        </p>
+
+                                                                                                        <p className="mb-0">
+                                                                                                            <b>Total :</b> ₹ {product?.price * pro.quantity}
+                                                                                                        </p>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+
+                                                                                            </div>
+
+                                                                                        </div>
 
                                                                                     </div>
 
@@ -163,26 +252,30 @@ const AllOrders = () => {
                                                                             })
                                                                         }
 
-                                                                    </td>
+                                                                    </div>
 
-                                                                </tr>
+                                                                </div>
 
-                                                            )
+                                                            </td>
 
-                                                        })
-                                                    }
+                                                        </tr>
 
-                                                </tbody>
+                                                    )
 
-                                            </table>
-                                        </div>
+                                                })
+                                        }
 
-                                    </div>
-                                </div>
+                                    </tbody>
+
+                                </table>
                             </div>
-                        </section>
-                    </>
-            // }
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+        // }
         // </>
     )
 }

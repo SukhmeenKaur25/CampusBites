@@ -43,21 +43,21 @@ function AdminHeader(){
               <div className="top-contact d-flex flex-wrap">
                 <span>
                   <i className="fas fa-phone-alt" />
-                  +1 (800) 123-4567
+                   +91 9417650581
                 </span>
                 <span>
                   <i className="fas fa-envelope" />
-                  hello@sarabfood.com
+                  campusbites.com
                 </span>
                 <span>
                   <i className="fas fa-map-marker-alt" />
-                  42 Flavor Street, NY
+                  DAV Institute of Engineering & Technology, Jalandhar
                 </span>
               </div>
               <div className="d-flex align-items-center gap-3">
                 <span className="ttag">
                   <i className="fas fa-fire me-1" />
-                  Free Delivery Today!
+                  20 MIN CAMPUS DELIVERY!
                 </span>
                 <div className="tsoc">
                   <Link to="#">
@@ -89,9 +89,9 @@ function AdminHeader(){
                 </div>
                 <div>
                   <div className="bname">
-                    Sar<span>ab</span>
+                    Campus<span>Bites</span>
                   </div>
-                  <div className="bsub">Fast Food &amp; Restaurant</div>
+                  <div className="bsub">CAMPUS FOOD, DELIVERED</div>
                 </div>
               </div>
             </Link>

@@ -8,11 +8,10 @@ function AdminFooter(){
       <div className="row g-5">
         <div className="col-lg-4">
           <div className="fnm">
-            Sar<span>ab</span>
+            Campous<span>Bites</span>
           </div>
           <p className="fdesc">
-            We bring the world's finest flavors together in a fast, friendly,
-            and affordable experience. Every meal crafted with love.
+            CAMPUS FOOD, DELIVERED in 20 MIN
           </p>
           <div className="fsoc">
             <a href="#">
@@ -121,7 +120,7 @@ function AdminFooter(){
               <i className="fas fa-map-marker-alt" />
             </div>
             <div className="fciinfo">
-              <strong>Address</strong>42 Flavor Street, Manhattan, NY 10001
+              <strong>Address</strong>DAV Institute of Engineering & Technology, Jalandhar
             </div>
           </div>
           <div className="fci">
@@ -129,7 +128,7 @@ function AdminFooter(){
               <i className="fas fa-phone-alt" />
             </div>
             <div className="fciinfo">
-              <strong>Phone</strong>+1 (800) 123-4567
+              <strong>Phone</strong>+91 9417650581
             </div>
           </div>
           <div className="fci">
@@ -137,7 +136,7 @@ function AdminFooter(){
               <i className="fas fa-envelope" />
             </div>
             <div className="fciinfo">
-              <strong>Email</strong>hello@sarabfood.com
+              <strong>Email</strong>hello@CampusBites.com
             </div>
           </div>
           <div className="fci">
@@ -145,7 +144,7 @@ function AdminFooter(){
               <i className="fas fa-clock" />
             </div>
             <div className="fciinfo">
-              <strong>Hours</strong>Wed - Sun: 09 AM - 11 PM
+              <strong>Hours</strong>Mon - Fri: 09 AM - 3 PM
             </div>
           </div>
         </div>
@@ -155,7 +154,7 @@ function AdminFooter(){
       <div className="container">
         <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
           <p>
-            © 2026 <span>Sarab Restaurant</span>. All Rights Reserved by{" "}
+            © 2026 <span>Campus Bites</span>. All Rights Reserved by{" "}
             <a
               target="_blank"
               className="mx-0 fw-bold text-success"
@@ -174,7 +173,7 @@ function AdminFooter(){
               className="mx-0 fw-bold text-success"
               href="https://themewagon.com"
             >
-              ThemeWagon
+          
             </a>
           </p>
           <div>

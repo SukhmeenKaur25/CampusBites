@@ -40,7 +40,7 @@ const AddCategory = () => {
     }
   }
   catch (err) {
-        toast.error(err)
+        toast.error(err.message || "Something went wrong")
       }
 
   finally {
@@ -94,7 +94,7 @@ const AddCategory = () => {
                         onChange={(e) => {
                           setname(e.target.value)
                         }}
-                        id="name"
+                        id="catName"
                         required
                         type="text"
                         placeholder="Enter your name" />
@@ -103,14 +103,14 @@ const AddCategory = () => {
                     <div className="col-sm-12">
                       <label className="flbl">Image</label>
                       <input className="fctrl"
-                        name="name"
+                        name="image"
                         onChange={(e) => {
                           setimage(e.target.files[0])
                         }}
-                        id="name"
+                        id="catImage"
                         required
                         type="file"
-                        placeholder="Enter your name" />
+                        placeholder="Choose an image" />
                     </div>
 
                     <div className="col-sm-12">

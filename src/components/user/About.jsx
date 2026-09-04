@@ -8,11 +8,11 @@ function About(){
         <div className="col-lg-5" data-aos="fade-right">
           <div className="astack">
             <div className="aexp">
-              <span className="anum">12+</span>
+              <span className="anum">850+</span>
               <small>
-                Years of
+                Happy
                 <br />
-                Excellence
+                Students
               </small>
             </div>
             <div className="amain">
@@ -26,16 +26,17 @@ function About(){
         <div className="col-lg-7" data-aos="fade-left">
           <span className="slbl">Our Story</span>
           <h2 className="stitle text-start">
-            We Invite You to Visit
+            Welcome to Your 
             <br />
-            Our <span>Food Restaurant</span>
+            your <span>Campus Canteen</span>
           </h2>
           <div className="sline lft" />
           <p className="sdesc mb-4">
-            Founded in 2012, Sarab began as a small corner joint with a big
-            dream - to serve food that brings people together. Today we're proud
-            to serve thousands of happy customers every week with the same
-            passion that started it all.
+
+
+
+
+We started Campus Bites with one simple goal — give students fresh, affordable food between classes without the long wait. What began as a small canteen counter has grown into the go-to food spot for hundreds of students every day. Same great taste, faster than ever, right on campus.
           </p>
           <div className="mb-4">
             <div className="fti">
@@ -45,8 +46,7 @@ function About(){
               <div>
                 <h6>100% Fresh Ingredients</h6>
                 <p>
-                  We source locally and sustainably. Every ingredient is
-                  hand-picked daily for maximum freshness.
+                  "Cooked Fresh Daily" — Every meal is prepped fresh in our kitchen each morning, never sitting around from the day before.
                 </p>
               </div>
             </div>
@@ -55,10 +55,9 @@ function About(){
                 <i className="fas fa-award" />
               </div>
               <div>
-                <h6>Award-Winning Recipes</h6>
+                <h6>Student-Favorite Menu</h6>
                 <p>
-                  Our signature recipes have won national culinary awards 5
-                  years in a row.
+                  From quick snacks to full meals, our menu is built around what students actually love to eat.
                 </p>
               </div>
             </div>
@@ -69,8 +68,7 @@ function About(){
               <div>
                 <h6>Lightning-Fast Delivery</h6>
                 <p>
-                  Order online and get hot, fresh food at your door in under 25
-                  minutes, guaranteed.
+                  Order online and get hot, fresh food delivered across campus in just 20 minutes.
                 </p>
               </div>
             </div>

@@ -25,6 +25,7 @@ import ViewMenu from "./components/user/ViewMenu";
 import AddToCart from "./components/user/AddtoCart";
 import Orders from "./components/user/Orders";
 import AllOrders from "./components/admin/orders/AllOrders";
+import ChatBotComponent from "./components/user/ChatBot";
 
 
 export default function App(){
@@ -65,7 +66,7 @@ export default function App(){
             </BrowserRouter>
 
         <ToastContainer/>
-
+<ChatBotComponent />
         </>
     )
 }

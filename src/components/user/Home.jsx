@@ -1,3 +1,7 @@
+import About from "./About"
+import Contact from "./Contact";
+import OpeningHours from "./Openinghours";
+import ViewCategory from "./ViewCategory";
 function Home(){
     return(
             <>
@@ -15,17 +19,15 @@ function Home(){
             <div className="hbi">
               <i className="fas fa-star" />
             </div>
-            <span>#1 Rated Fast Food Restaurant in New York</span>
+            <span>#1 Rated Canteen on Campus</span>
           </div>
           <h1 className="htitle">
-            Delicious <span className="hl">Fast Food</span>
+            Fresh   <span className="hl">Campus Food,</span>
             <br />
-            for Every Moment
+            Delivered Fast
           </h1>
           <p className="hdesc">
-            Experience bold flavors crafted from premium ingredients. From
-            crispy burgers to gourmet pizzas - every bite is an adventure worth
-            savoring.
+            Order your favorite canteen meals in just a few taps.
           </p>
           <div className="d-flex flex-wrap gap-3 mb-2">
             <a href="#menu" className="btn-red">
@@ -60,17 +62,17 @@ function Home(){
             <div className="sdiv" />
             <div className="hstat">
               <span className="snum">
-                15<em>+</em>
+                20<em>min</em>
               </span>
-              <small>Expert Chefs</small>
+              <small>Avg Delivery</small>
             </div>
             <div className="sdiv" />
-            <div className="hstat">
+            {/* <div className="hstat">
               <span className="snum">
-                12<em>yr</em>
+                4.9<em></em>
               </span>
-              <small>Experience</small>
-            </div>
+              <small>Student Rating</small>
+            </div> */}
           </div>
         </div>
         <div className="col-lg-6">
@@ -172,7 +174,7 @@ function Home(){
     </div>
   </div>
   {/* CATEGORY */}
-  <section id="category">
+  {/* <section id="category">
     <div className="container">
       <div className="text-center mb-5" data-aos="fade-up">
         <span className="slbl">What We Offer</span>
@@ -254,9 +256,11 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
+<ViewCategory/>
+
   {/* ABOUT */}
-  <section id="about">
+  {/* <section id="about">
     <div className="container">
       <div className="row align-items-center g-5">
         <div className="col-lg-5" data-aos="fade-right">
@@ -336,7 +340,9 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
+  <About/>
+
   {/* ============================================================
    MENU � FIX 3 (filter works) + FIX 4 (plus opens popup)
    ============================================================ */}
@@ -920,7 +926,7 @@ function Home(){
   {/* ============================================================
    HISTORY � FIX 8 (alternating left/right text)
    ============================================================ */}
-  <section id="history">
+  {/* <section id="history">
     <div className="container">
       <div className="text-center mb-5" data-aos="fade-up">
         <span className="slbl">Our Journey</span>
@@ -934,7 +940,7 @@ function Home(){
         </p>
       </div>
       <div className="timeline" data-aos="fade-up">
-        {/* ODD ? text on LEFT */}
+
         <div className="tli">
           <div className="tl-left">
             <div className="tlyear">2012</div>
@@ -958,7 +964,7 @@ function Home(){
             </p>
           </div>
         </div>
-        {/* EVEN ? text on RIGHT */}
+
         <div className="tli">
           <div className="tl-left">
             <div className="tlyear">2015</div>
@@ -982,7 +988,7 @@ function Home(){
             </p>
           </div>
         </div>
-        {/* ODD ? text on LEFT */}
+
         <div className="tli">
           <div className="tl-left">
             <div className="tlyear">2019</div>
@@ -1006,7 +1012,7 @@ function Home(){
             </p>
           </div>
         </div>
-        {/* EVEN ? text on RIGHT */}
+
         <div className="tli">
           <div className="tl-left">
             <div className="tlyear">2026</div>
@@ -1032,9 +1038,9 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
   {/* CHEFS */}
-  <section id="chefs">
+  {/* <section id="chefs">
     <div className="container">
       <div className="text-center mb-5" data-aos="fade-up">
         <span className="slbl">The Culinary Team</span>
@@ -1154,9 +1160,10 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
+
   {/* HOURS */}
-  <section id="hours">
+  {/* <section id="hours">
     <div className="hrsbg" />
     <div className="container" style={{ position: "relative", zIndex: 2 }}>
       <div className="text-center mb-5" data-aos="fade-up">
@@ -1310,7 +1317,8 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
+  <OpeningHours/>
   {/* TESTIMONIALS */}
   <section id="testimonials">
     <div className="container">
@@ -1428,7 +1436,7 @@ function Home(){
     </div>
   </section>
   {/* RESERVATION FORM */}
-  <section id="reservation">
+  {/* <section id="reservation">
     <div className="container">
       <div className="text-center mb-5" data-aos="fade-up">
         <span className="slbl">Book a Table</span>
@@ -1679,7 +1687,7 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
   {/* BLOG */}
   <section id="blog">
     <div className="container">
@@ -1843,7 +1851,7 @@ function Home(){
   {/* ============================================================
    FIX 6 � CONTACT FORM
    ============================================================ */}
-  <section id="contact-section">
+  {/* <section id="contact-section">
     <div className="container">
       <div className="text-center mb-5" data-aos="fade-up">
         <span className="slbl">Get In Touch</span>
@@ -1976,7 +1984,8 @@ function Home(){
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
+  <Contact/>
 
 
         </>

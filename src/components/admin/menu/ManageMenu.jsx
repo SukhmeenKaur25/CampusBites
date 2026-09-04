@@ -24,14 +24,11 @@ const ManageMenu = () => {
     const res = await CategoryServices.All();
 
     setcatdata(res);
-    console.log(res);
 
   }
 
   const FetchData = async () => {
     const data = await MenuServices.All()
-
-    console.log(data);
 
     setData(data)
   }

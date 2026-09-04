@@ -51,7 +51,6 @@ const ManageCategory = () => {
   }
 
   const changeStatus = async (id, status) => {
-    console.log(id,status);
 
     let res=await CategoryServices.statusChange(id, status)
 

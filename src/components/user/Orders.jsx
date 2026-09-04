@@ -47,7 +47,7 @@ const Orders = () => {
               <th>Amount</th>
               <th>Status</th>
               <th>Date</th>
-              <th>Items</th>
+              <th>Order Details</th>
             </tr>
 
           </thead>
@@ -63,41 +63,105 @@ const Orders = () => {
 
                   <td>₹ {item.amount}</td>
 
-                  <td>{item.status}</td>
+                  <td>
+  <span
+    className={
+      item.status === "Pending"
+        ? "badge bg-warning text-dark"
+        : item.status === "Preparing"
+        ? "badge bg-primary"
+        : item.status === "Ready"
+        ? "badge bg-info text-dark"
+        : "badge bg-success"
+    }
+  >
+    {item.status}
+  </span>
+</td>
 
                   <td>
                     {item.createdAt?.toDate().toLocaleDateString()}
                   </td>
 
-                  <td>
-  {
-    item.items?.length > 0 ?
+                 <td>
 
-      item.items.map((pro, index) => {
+  <button
+    className="btn btn-danger btn-sm text-white"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target={`#items${item.id}`}
+  >
+    <i className="fa fa-info-circle"></i>
+  </button>
 
-        let product = GetProduct(pro.proId);
+  <div
+    className="collapse mt-2"
+    id={`items${item.id}`}
+  >
 
-        return (
-          <div key={index} className="mb-2">
-  <b>{product?.name}</b>
+    <div className="accordion" id={`acc${item.id}`}>
 
-  <br />
+      {
+        item.items?.map((pro, index) => {
 
-  <small>Qty : {pro.quantity}</small>
+          let product = GetProduct(pro.proId)
 
-  <hr />
-</div>
-        )
+          return (
 
-      })
+            <div
+              className="accordion-item"
+              key={index}
+            >
 
-      :
+              <h2 className="accordion-header">
 
-      "No Items"
+                <button
+                  className="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#collapse${item.id}${index}`}
+                >
+                  {product?.name}
+                </button>
 
-  }
+              </h2>
+
+              <div
+                id={`collapse${item.id}${index}`}
+                className="accordion-collapse collapse"
+                data-bs-parent={`#acc${item.id}`}
+              >
+
+                <div className="accordion-body">
+
+                  <img
+                    src={product?.image}
+                    width="70"
+                    className="rounded mb-2"
+                  />
+
+                  <p><b>Price :</b> ₹ {product?.price}</p>
+
+                  <p><b>Quantity :</b> {pro.quantity}</p>
+
+                  <p><b>Total :</b> ₹ {product?.price * pro.quantity}</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          )
+
+        })
+      }
+
+    </div>
+
+  </div>
+
 </td>
-
                 </tr>
 
               ))
