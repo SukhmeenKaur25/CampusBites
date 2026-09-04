@@ -22,7 +22,7 @@ import ManageMenu from "./components/admin/menu/ManageMenu";
 import ViewCategory from "./components/user/ViewCategory";
 import UpdateMenu from "./components/admin/menu/UpdateMenu";
 import ViewMenu from "./components/user/ViewMenu";
-import AddToCart from "./components/user/AddtoCart";
+import AddToCart from "./components/user/AddToCart";
 import Orders from "./components/user/Orders";
 import AllOrders from "./components/admin/orders/AllOrders";
 import ChatBotComponent from "./components/user/ChatBot";
