@@ -8,7 +8,7 @@ function AdminFooter(){
       <div className="row g-5">
         <div className="col-lg-4">
           <div className="fnm">
-            Campous<span>Bites</span>
+            Campus<span>Bites</span>
           </div>
           <p className="fdesc">
             CAMPUS FOOD, DELIVERED in 20 MIN

@@ -16,21 +16,18 @@ const AllOrders = () => {
         FetchOrders();
     }, []);
 
-const FetchOrders = async () => {
-  try {
-    let data = await OrderServices.All();
-    setOrderData(data);
+    const FetchOrders = async () => {
+        try {
+            let data = await OrderServices.All();
+            setOrderData(data);
 
-    let menu = await MenuServices.All();
-    setMenuData(menu);
-  } catch (err) {
-    console.error("Failed to fetch orders:", err);
-    toast.error("Could not load orders");
-  }
-}
-
-
-
+            let menu = await MenuServices.All();
+            setMenuData(menu);
+        } catch (err) {
+            console.error("Failed to fetch orders:", err);
+            toast.error("Could not load orders");
+        }
+    }
 
     const GetProduct = (id) => {
         return menuData.find((el) => el.id == id);
@@ -70,23 +67,20 @@ const FetchOrders = async () => {
             <section className="contact-section">
                 <div className="container">
                     <div className="row g-4 justify-content-center">
-                        <div className="d-flex justify-content-between align-items-center mb-3">
+                        <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
 
-                            <h1 className="flex-grow-1 text-center m-0">
+                            <h1 className="m-0" style={{ flex: "1 1 200px" }}>
                                 All Orders
                             </h1>
 
-                            <div className="row mb-3">
-                                <div className="col-md-4 ms-auto">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Search by Token or Customer"
-                                        value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
-                                    />
-                                </div>
-                            </div>
+                            <input
+                                type="text"
+                                className="form-control"
+                                style={{ flex: "1 1 220px", maxWidth: 280 }}
+                                placeholder="Search by Token or Customer"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
 
                             <Link
                                 className="btn btn-danger"
@@ -119,12 +113,13 @@ const FetchOrders = async () => {
                                     <tbody>
 
                                         {
-                                            orderData.filter((item) => {
-  return (
-    (item.token?.toString() || "").includes(search) ||
-    (item.userName?.toLowerCase() || "").includes(search.toLowerCase())
-  );
-})
+                                            orderData
+                                                .filter((item) => {
+                                                    return (
+                                                        (item.token?.toString() || "").includes(search) ||
+                                                        (item.userName?.toLowerCase() || "").includes(search.toLowerCase())
+                                                    );
+                                                })
                                                 .map((item) => {
 
                                                     return (
