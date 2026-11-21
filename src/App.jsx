@@ -42,10 +42,8 @@ export default function App(){
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register/>}></Route>
                         <Route path="/viewCategory" element={<ViewCategory/>}></Route>
-                        <Route path="/orders" element={<Orders/>}></Route>
-                        
+                        <Route path="/orders" element={<Orders/>}></Route> 
                         <Route path="/viewMenu/:id" element={<ViewMenu/>}></Route>
-
                         <Route path="/addToCart" element={<AddToCart/>}></Route>
                     </Route>
 
